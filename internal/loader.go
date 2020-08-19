@@ -490,7 +490,7 @@ loop:
 		}
 
 		typeName := SingularizeIdentifier(ti.TableName)
-		for _, types := range args.RenameTypes {
+		for _, types := range args.TypeNames {
 			for _, typ := range strings.Split(types, " ") {
 				x := strings.Split(typ, "=")
 				if len(x) == 2 && x[1] != "" {
