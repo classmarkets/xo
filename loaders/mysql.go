@@ -5,10 +5,10 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
-	"github.com/knq/snaker"
+	"github.com/kenshaw/snaker"
 
-	"github.com/xo/xo/internal"
-	"github.com/xo/xo/models"
+	"github.com/classmarkets/xo/internal"
+	"github.com/classmarkets/xo/models"
 )
 
 func init() {
