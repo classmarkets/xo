@@ -581,7 +581,9 @@ func (a *ArgType) convext(prefix string, f *Field, t *Field) string {
 		ft = strings.ToLower(f.Type[8:])
 	}
 
-	if t.Type != ft {
+	if ft == "*"+t.Type {
+		expr = "*" + expr
+	} else if t.Type != ft {
 		expr = t.Type + "(" + expr + ")"
 	}
 
