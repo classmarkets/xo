@@ -579,6 +579,9 @@ func (a *ArgType) convext(prefix string, f *Field, t *Field) string {
 	if strings.HasPrefix(ft, "sql.Null") {
 		expr = expr + "." + f.Type[8:]
 		ft = strings.ToLower(f.Type[8:])
+	} else if strings.HasPrefix(ft, "uuid.Null") {
+		expr = expr + "." + f.Type[9:]
+		ft = strings.ToLower(f.Type[9:])
 	}
 
 	if ft == "*"+t.Type {

@@ -190,8 +190,8 @@ func PgParseType(args *internal.ArgType, dt string, nullable bool) (int, string,
 		nilVal = "uuid.New()"
 		typ = "uuid.UUID"
 		if nullable {
-			nilVal = "nil"
-			typ = "*uuid.UUID"
+			nilVal = "uuid.NullUUID{}"
+			typ = "uuid.NullUUID"
 		}
 
 	default:
