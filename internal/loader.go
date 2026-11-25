@@ -712,6 +712,12 @@ func (tl TypeLoader) LoadTableForeignKeys(args *ArgType, tableMap map[string]*Ty
 			}
 		}
 
+		// The referenced table is excluded, so there is no type to
+		// generate a foreign key func for.
+		if refTpl == nil {
+			continue
+		}
+
 	refColLoop:
 		// find ref column
 		for _, f := range refTpl.Fields {
@@ -721,14 +727,14 @@ func (tl TypeLoader) LoadTableForeignKeys(args *ArgType, tableMap map[string]*Ty
 			}
 		}
 
-		// no ref col, but have ref tpl, so use primary key
-		if refTpl != nil && refCol == nil {
+		// no ref col, so use primary key
+		if refCol == nil {
 			refCol = refTpl.PrimaryKey
 		}
 
 		// check everything was found
-		if col == nil || refTpl == nil || refCol == nil {
-			return errors.New("could not find col, refTpl, or refCol")
+		if col == nil || refCol == nil {
+			return errors.New("could not find col or refCol")
 		}
 
 		// foreign key name
